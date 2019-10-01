@@ -2,11 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const candyService = require('./services/candyService');
+const offerService = require('./services/offerService');
 
 app.use(bodyParser.json());
-
-// Routes
-
 
 // ================== CANDIES ===================== //
 // http://localhost:3000/api/candies [GET]
@@ -36,6 +34,10 @@ app.post('/api/candies', function(req, res) {
 
 // http://localhost:3000/api/offers [GET]
 // Gets all offers
+app.get('/api/offers', function(req, res) {
+    const result = offerService.getAllOffers();
+    return res.status(200).json(result);
+})
 
 // ================== PINATAS ===================== //
 // http://localhost:3000/api/pinatas [GET]
