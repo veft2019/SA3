@@ -59,6 +59,13 @@
             "surprise": "https://i.imgur.com/X6BK1FT.jpg",
             "maximumHits": 1,
             "currentHits": 0
+        },
+        {
+            "id": 4,
+            "name": "Griffin",
+            "surprise": "https://image.shutterstock.com/image-illustration/griffin-mountains-260nw-1191069535.jpg",
+            "maximumHits": 1,
+            "currentHits": 0
         }
     ]
 }

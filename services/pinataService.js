@@ -1,6 +1,7 @@
 const dbProvider = require('../data/data');
 const request = require('request');
 const fs = require('fs');
+const mkdirp = require('mkdirp');
 
 const pinataService = () => {
     const getAllPinatas = async () => {
@@ -55,11 +56,13 @@ const pinataService = () => {
             if(result.surprise.match(/\.(jpeg|jpg|gif|png)$/) != null) {
                 var fileNameArray = result.surprise.split(".");
                 var fileType = fileNameArray[fileNameArray.length-1];
+                fs.mkdir('./images', { recursive: true }, function(err) {
+                    if(err) { return {status: 500, body: "Something went wrong while creating a local folder for your surprise image!"}; }
+                });
                 request(result.surprise).pipe(fs.createWriteStream(`./images/${result.name}.${fileType}`));
 
             }
             else {
-                console.log("Hey, got em");
                 fs.appendFile("surprises.txt", `${result.surprise}\n`, (err) => {
                     if(err) { return {status: 500, body: "Something went wrong while appending your new surprise to your local file!"}; }
                 });
